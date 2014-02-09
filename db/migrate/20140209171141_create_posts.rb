@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :content
       t.integer :author_id
-
+      t.boolean :flagged, default: false
       t.timestamps
     end
   end
