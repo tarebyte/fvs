@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Film and Video Society Board" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Film and Video Society Board" %>">
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Film and Video Society Board" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Film and Video Society Board" %>">
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= csrf_meta_tags %>
   </head>
   <body>
+  <div id="wrap">
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+
+    <div class="container">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
+  </div>
+
+
+  <%= javascript_include_tag "application" %>
   </body>
 </html>

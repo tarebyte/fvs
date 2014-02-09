@@ -1,0 +1,12 @@
+<h2>Current Listing</h2>
+
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+
+<table class="table table-striped">
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.author.name %></td>
+    </tr>
+  <% end %>
+</table>

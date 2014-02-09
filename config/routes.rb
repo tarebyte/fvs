@@ -1,10 +1,13 @@
 Fvs::Application.routes.draw do
-  root 'posts#show'
+  root 'pages#home'
 
-  devise_for :users do
-  end
+  match '/about',    to: 'pages#about',   via: 'get'
+  match '/contact',  to: 'pages#contact', via: 'get'
+  match '/listings', to: 'posts#index',    via: 'get'
 
-  resource :users, only: [:show] do
+  devise_for :users
+
+  resource :users do
     resource :posts
   end
 end
