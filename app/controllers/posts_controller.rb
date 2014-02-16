@@ -3,8 +3,7 @@ class PostsController < ApplicationController
   after_action :verify_authorized, except: [:index, :show, :create]
 
   def index
-    @post = Post.new
-    @posts = Post.where(flagged: false).paginate(page: params[:page]).order('created_at ASC')
+    @posts = Post.where(flagged: false).paginate(page: params[:page]).order('created_at DESC')
   end
 
   def show
