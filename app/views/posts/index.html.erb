@@ -1,12 +1,35 @@
-<h2>Current Listing</h2>
+<h1>Current Listings</h1>
+
+<%# <% if policy(Post.new).create? %>
+<%#   <h2>Create a new Post</h2>
+<%#   <%= form_for Post.new, url: users_posts_path, html: { class: "form form-horizontal", role: "form" }, remote: true do |f| %>
+<%#     <div class="form-group">
+<%#       <div class="col-md-8">
+<%#       <%= f.text_field :title, placeholder: 'Title', class: "form-control" %>
+<%#       </div>
+<%#     </div>
+<%#
+<%#     <div class="form-group">
+<%#       <div class="col-md-8">
+<%#       <%= f.text_area :content, placeholder: 'Content', class: "form-control" %>
+<%#       </div>
+<%#     </div>
+<%#
+<%#     <%= f.submit 'Submit', class: 'btn btn-default' %>
+<%#   <% end %>
+<%# <% end %>
+
+<br><br>
 
 <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 
-<table class="table table-striped">
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.author.name %></td>
-    </tr>
-  <% end %>
+<table id="listings" class="table table-striped">
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.author.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

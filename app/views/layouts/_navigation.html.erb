@@ -14,6 +14,11 @@
         <li><%= link_to 'About', about_path %></li>
         <li><%= link_to 'Contact', contact_path %></li>
         <li><%= link_to 'Listings', listings_path %></li>
+        <li>
+          <% if policy(Post.new).create? %>
+            <%= link_to 'Create a New Listing', new_users_posts_path %>
+          <% end %>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
