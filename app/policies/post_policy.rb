@@ -6,13 +6,20 @@ class PostPolicy
     @post = post
   end
 
-  def index?   ; !@post.flagged? unless @user.admin? end
-  def show?    ; show                                end
+  def flagged?
+    @user.admin?
+  end
 
-  def create? ; @user.persisted? end
-  def new?    ; create?          end
+  def create?
+    @user.persisted?
+  end
 
-  def update?  ; @post.author_id == user.id  end
-  def edit?    ; update?                     end
-  def destroy? ; update?                     end
+  def new? ; create? end
+
+  def edit?
+    @post.author_id == @user.id or @user.admin?
+  end
+
+  def update?  ; edit? end
+  def destroy? ; edit? end
 end

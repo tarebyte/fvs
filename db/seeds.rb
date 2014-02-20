@@ -5,3 +5,57 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Create an admin and guest
+m = User.create(
+    name: "Mark Tareshawty",
+    email: "tarebyte@gmail.com",
+    password: "foobar",
+    password_confirmation: "foobar",
+    admin: true
+)
+
+m2 = User.create(
+  name: "Max Mauerman",
+  email: "max.mauerman@gmail.com",
+  password: "foobar",
+  password_confirmation: "foobar",
+  admin: false
+)
+
+# TODO this is shitty but I'll come back to it
+m.save!(validate: false)
+m2.save!(validate: false)
+m.save
+m2.save
+
+p = Post.create(
+    title: "Looking for lighting guy",
+    content: "Hey all, I'm looking for a guy to run the lights",
+    author_id: m.id,
+)
+
+p2 = Post.create(
+    title: "Need help with a movie",
+    content: "I will pay you in equity ASAP",
+    author_id: m2.id,
+    flagged: true
+  )
+
+p3 = Post.create(
+    title: "For Hire: engineer",
+    content: "I'm an awesome dude hire me",
+    author_id: m2.id
+  )
+
+p4 = Post.create(
+    title: "Need a beautiful actress",
+    content: "The most beautiful you have ever seen",
+    author_id: m.id
+  )
+
+
+  p.save!
+  p2.save!
+  p3.save!
+  p4.save!

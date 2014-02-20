@@ -40,5 +40,23 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
   config.include Capybara::DSL
+
+  config.include FactoryGirl::Syntax::Methods
+  config.before(:suite) do
+    FactoryGirl.lint
+  end
+
+  # Database Cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end

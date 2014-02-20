@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
 
   before do
-    @post = FactoryGirl.create(:post)
+    @post = create(:post)
   end
 
   subject { @post }

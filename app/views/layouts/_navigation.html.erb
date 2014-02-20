@@ -16,13 +16,22 @@
         <li><%= link_to 'Listings', listings_path %></li>
         <li>
           <% if policy(Post.new).create? %>
-            <%= link_to 'Create a New Listing', new_users_posts_path %>
+            <%= link_to 'Create a New Listing', new_user_post_path(current_user.id) %>
           <% end %>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to current_user.name, edit_user_registration_path  %></li>
+          <li>
+            <%= link_to current_user.name, edit_user_registration_path  %>
+          </li>
+          <li>
+            <% if current_user.admin? && currently_flagged.count > 0 %>
+              <%= link_to flagged_path do %>
+                Flagged (<%= currently_flagged.count %>)
+              <% end %>
+            <% end %>
+          </li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
         <% else %>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>

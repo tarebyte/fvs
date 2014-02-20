@@ -4,6 +4,7 @@ FactoryGirl.define do
     email "exampleuser@gmail.com"
     password "foobarwazzup"
     password_confirmation "foobarwazzup"
+    admin false
   end
 
   factory :post do
