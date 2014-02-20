@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :set_post, only: [:show, :edit, :update, :destroy]
+  before_filter :set_post, only: [:show, :flag, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
 
   def index
@@ -12,6 +12,22 @@ class PostsController < ApplicationController
   def flagged
     @posts = Post.where(flagged: true).paginate(page: params[:page]).order('created_at DESC')
     authorize @posts
+  end
+
+  def flag
+    authorize @post
+    @flagged_posts_count = Post.where(flagged: true).count
+    if !@post.flagged
+      if @post.update_attribute(:flagged, true)
+        respond_to do |format|
+          format.html { redirect_to listings_path }
+          format.json { head :no_content }
+          format.js   { render layout: false }
+        end
+      end
+    else
+      flash[:error] = "This listing has already been flagged"
+    end
   end
 
   def new
@@ -50,7 +66,7 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.update(params[:post].permit(:title, :content))
-      flash[:notice] = "Listing was successfully update"
+      flash[:notice] = "Listing was successfully updated"
       redirect_to listings_path
     else
       render 'edit'

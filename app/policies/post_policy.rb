@@ -14,7 +14,8 @@ class PostPolicy
     @user.persisted?
   end
 
-  def new? ; create? end
+  def new?  ; create? end
+  def flag? ; create? end
 
   def edit?
     @post.author_id == @user.id or @user.admin?

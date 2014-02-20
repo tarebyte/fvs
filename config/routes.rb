@@ -9,6 +9,8 @@ Fvs::Application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    resources :posts, except: [:index]
+    resources :posts, except: [:index], path: 'listings' do
+      patch 'flag', on: :member
+    end
   end
 end

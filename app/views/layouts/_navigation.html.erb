@@ -27,7 +27,7 @@
           </li>
           <li>
             <% if current_user.admin? && currently_flagged.count > 0 %>
-              <%= link_to flagged_path do %>
+              <%= link_to flagged_path, class: 'flagged_count' do %>
                 Flagged (<%= currently_flagged.count %>)
               <% end %>
             <% end %>

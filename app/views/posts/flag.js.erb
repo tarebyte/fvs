@@ -1,0 +1,4 @@
+$('.flag_post').bind('ajax:success', function() {
+  $(this).closest('tr').fadeOut();
+  $('.flagged_count').text("Flagged (<%= j "#{@flagged_posts_count + 1}" %>)");
+});
