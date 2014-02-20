@@ -13,6 +13,13 @@
                 <%= link_to 'Delete', [current_user, post], remote: true, class: 'delete_listing', method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
             </td>
+            <% if !post.flagged %>
+              <td>
+                <button type="button" class="flag_post btn btn-primary btn-md">
+                  <span class="glyphicon glyphicon-flag"></span> Flag
+                </button>
+              </td>
+            <% end %>
           <% end %>
       </tr>
     <% end %>
