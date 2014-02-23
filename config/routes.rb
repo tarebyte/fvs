@@ -11,6 +11,7 @@ Fvs::Application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :posts, except: [:index], path: 'listings' do
       patch 'flag', on: :member
+      patch 'unflag', on: :member
     end
   end
 end

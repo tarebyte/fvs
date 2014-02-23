@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :set_post, only: [:show, :flag, :edit, :update, :destroy]
+  before_filter :set_post, only: [:show, :flag, :unflag, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
 
   def index
@@ -30,6 +30,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def unflag
+    authorize @post
+    @flagged_posts_count = Post.where(flagged: true).count
+    if @post.flagged
+      if @post.update_attribute(:flagged, false)
+        respond_to do |format|
+          format.html { redirect_to listings_path }
+          format.json { head :no_content }
+          format.js   { render layout: false }
+        end
+      end
+    else
+      flash[:error] = "This listing has is not flagged"
+    end
+  end
   def new
     @user = User.find(params[:user_id])
 
