@@ -19,20 +19,24 @@
           <b class="caret"></b>
         </a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Actors', '#' %></li>
-              <li><%= link_to 'Film Makers', '#' %></li>
-              <li><%= link_to 'Equipment', '#' %></li>
+              <li><%= link_to 'Actors', actors_path %></li>
+              <li><%= link_to 'Film Makers', 'film-makers' %></li>
+              <li><%= link_to 'Equipment', equipment_path %></li>
               <li class="divider"></li>
               <li><%= link_to 'All Listings', listings_path %></li>
+              <% if policy(Post.new).create? %>
+                <li class="divider"></li>
+                <li><%= link_to 'Create a Listing', new_user_post_path(current_user.id) %>
+              <% end %>
             </ul>
         </li>
       </ul>
 
-      <form class="navbar-form navbar-left" role="search">
+      <%= form_tag search_path, method: 'get', role: 'search', class: 'navbar-form navbar-left' do %>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search' %>
         </div>
-      </form>
+      <% end %>
 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

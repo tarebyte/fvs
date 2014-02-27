@@ -1,9 +1,17 @@
 class PostsController < ApplicationController
   before_filter :set_post, only: [:show, :flag, :unflag, :edit, :update, :destroy]
-  after_action :verify_authorized, except: [:index, :show]
+  after_action :verify_authorized, except: [:index, :show, :equipment]
 
   def index
-    @posts = Post.where(flagged: false).paginate(page: params[:page]).order('created_at DESC')
+     @posts = Post.where(flagged: false).paginate(page: params[:page]).order('created_at DESC')
+  end
+
+  def equipment
+    @posts = Post.search('equipment')
+      .records.where(flagged: false)
+      .paginate(page: params[:page])
+
+    render action: 'index'
   end
 
   def show
@@ -45,6 +53,7 @@ class PostsController < ApplicationController
       flash[:error] = "This listing has is not flagged"
     end
   end
+
   def new
     @user = User.find(params[:user_id])
 

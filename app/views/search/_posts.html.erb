@@ -1,0 +1,8 @@
+<% if !@posts.nil? %>
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+
+  <h3>Listings results</h3>
+  <% @posts.each do |post| %>
+    <p><%= post.title %></p>
+    <% end %>
+<% end %>

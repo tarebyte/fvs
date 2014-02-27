@@ -1,0 +1,8 @@
+<h1>Search Results</h1>
+
+<% if @posts.nil? && @users.nil? %>
+  <%= render 'search/not_found' %>
+<% else %>
+  <%= render 'search/users' %>
+  <%= render 'search/posts' %>
+<% end %>

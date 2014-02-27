@@ -1,0 +1,13 @@
+<h1><%= @title if !@title.nil? %></h1>
+
+<% if @users.count > 0 %>
+<% @users.each do |user| %>
+  <%= user.name %>
+  <% end %>
+<% else %>
+  <h1>Oh Dear...</h1>
+  <p>
+    It appears we coud not find what you were looking for,
+    so sorry about that.
+  </p>
+<% end %>

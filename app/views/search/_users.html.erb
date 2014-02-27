@@ -1,0 +1,8 @@
+<% if !@users.nil? %>
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+
+  <h3>User results</h3>
+  <% @users.each do |user| %>
+    <p><%= user.name %></p>
+  <% end %>
+<% end %>
