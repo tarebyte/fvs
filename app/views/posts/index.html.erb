@@ -1,3 +1,10 @@
+<% if policy(Post.new).create? %>
+  <%= link_to new_user_post_path(current_user.id), class: 'btn btn-large btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span> Create a new Listing
+  <% end %>
+<% end %>
+<br><br>
+
 <h1>Current Listings</h1>
 <br><br>
 
