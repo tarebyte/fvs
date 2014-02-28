@@ -8,7 +8,8 @@ class SearchController < ApplicationController
       @users = nil
       @posts = nil
     else
-      @users = User.search(params[:query]).records
+      @users = User.search(params[:query])
+        .records
         .paginate(page: params[:page])
 
       @posts = Post.search(params[:query])

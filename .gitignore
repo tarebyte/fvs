@@ -18,3 +18,4 @@
 .ideas
 .secret
 database.yml
+.env

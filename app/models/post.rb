@@ -3,6 +3,7 @@ require 'elasticsearch/model'
 class Post < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  index_name BONSAI_INDEX_NAME
 
   belongs_to :author, class_name: 'User'
 
