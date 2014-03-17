@@ -1,4 +1,16 @@
-<h1>Current Listings</h1>
-<br><br>
+<%= render 'layouts/search_bar' %>
 
-<%= render 'posts/posts_table' %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Members</h2>
+    <%= render 'users/basic_users_table' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Listings</h2>
+    <br>
+    <%= render 'posts/basic_posts_table' %>
+  </div>
+</div>

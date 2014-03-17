@@ -4,23 +4,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for?(:title) ? yield(:title) : "Film and Video Society Board" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Film and Video Society Board" %>">
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/retina.js/1.0.1/retina.js" %>
   <%= csrf_meta_tags %>
   </head>
   <body>
-  <div id="wrap">
+
     <header>
       <%= render 'layouts/navigation' %>
     </header>
 
-    <div class="container">
+    <div id="main" class="container">
       <%= render 'layouts/messages' %>
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
-  </div>
-
 
   <%= javascript_include_tag "application" %>
   </body>

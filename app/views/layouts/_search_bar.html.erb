@@ -1,0 +1,9 @@
+<div class="row search-bar">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_tag search_path, method: 'get', role: 'search' do %>
+      <div class="form-group">
+        <%= text_field_tag :query, params[:query], class: 'form-control input-lg', placeholder: 'Search: actor, film maker equipment etc.' %>
+      </div>
+    <% end %>
+  </div>
+</div>

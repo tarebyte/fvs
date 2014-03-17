@@ -7,6 +7,20 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  # Check if the current slug is not the cannonical one.
+  def bad_slug?(object)
+    params[:id] != object.to_param
+  end
+
+  def redirect_to_good_slug(object)
+    redirect_to params.merge({
+      :controller => controller_name,
+      :action => params[:action],
+      :id => object.to_param,
+      :status => :moved_permanently
+    })
+  end
+
   protected
 
   def after_sign_in_path_for(resource_name)
@@ -14,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    listings_path
+   root_path
   end
 
   def configure_permitted_parameters

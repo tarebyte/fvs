@@ -12,6 +12,7 @@ m = User.create(
     email: "tarebyte@gmail.com",
     password: "foobar",
     password_confirmation: "foobar",
+    slug: "mark-tareshawty",
     admin: true
 )
 
@@ -20,6 +21,7 @@ m2 = User.create(
   email: "max.mauerman@gmail.com",
   password: "foobar",
   password_confirmation: "foobar",
+  slug: "max-maueman",
   admin: false
 )
 
@@ -33,25 +35,29 @@ p = Post.create(
     title: "Looking for lighting guy",
     content: "Hey all, I'm looking for a guy to run the lights",
     author_id: m.id,
+    slug: "looking-for-lighting-guy"
 )
 
 p2 = Post.create(
     title: "Need help with a movie",
     content: "I will pay you in equity ASAP",
     author_id: m2.id,
-    flagged: true
+    flagged: true,
+    slug: "need-help-with-a-movie"
   )
 
 p3 = Post.create(
     title: "For Hire: engineer",
     content: "I'm an awesome dude hire me",
-    author_id: m2.id
+    author_id: m2.id,
+    slug: "for-hire-engineer"
   )
 
 p4 = Post.create(
     title: "Need a beautiful actress",
     content: "The most beautiful you have ever seen",
-    author_id: m.id
+    author_id: m.id,
+    slug: "need-a-beautiful-actress"
   )
 
 

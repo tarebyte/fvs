@@ -1,0 +1,9 @@
+<table class="table table-striped table-bordered">
+  <tbody>
+    <% @users.each do |user| %>
+      <tr id="<%= user.id %>">
+        <td><%= link_to user.name, user_path(user) %> Joined: <%= user.created_at.to_formatted_s(:month_and_day) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

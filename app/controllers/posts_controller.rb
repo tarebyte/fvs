@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   after_action :verify_authorized, except: [:index, :show, :equipment]
 
   def index
-     @posts = Post.where(flagged: false).paginate(page: params[:page]).order('created_at DESC')
+    @users = User.last(10).reverse
+    @posts = Post.last(10).reverse
   end
 
   def equipment
@@ -111,7 +112,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   def post_params
